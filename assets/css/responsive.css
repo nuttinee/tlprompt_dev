@@ -1,0 +1,17 @@
+
+/* clear data
+=================================== */
+
+
+/* media screen
+=================================== */
+
+@media (min-width: 768px){
+	.txt-sm-right {text-align:right;}
+}
+@media (min-width: 992px){
+	.txt-md-right {text-align:right;}
+}
+@media (max-width: 479px){
+	.boxListForm {padding: 30px 0px;}
+}
