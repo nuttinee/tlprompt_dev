@@ -1,0 +1,56 @@
+<div class="popup popup-insurance-cal">
+	<h1 class="title">ระบุจำนวนเงิน</h1>
+	<p class="show-number">0</p>
+	<div class="section-cal">
+		<a rel="1">1</a>
+		<a rel="2">2</a>
+		<a rel="3">3</a>
+		<a rel="" ref="clear" class="btn-option">C</a>
+		<a rel="4">4</a>
+		<a rel="5">5</a>
+		<a rel="6">6</a>
+		<a rel="" ref="delete" class="btn-option"><</a>
+		<a rel="7">7</a>
+		<a rel="8">8</a>
+		<a rel="9">9</a>
+		<a rel="000000" class="btn-text">ล้าน</a>
+		<a rel="0">0</a>
+		<a rel="00">00</a>
+		<a rel="0000" class="btn-text">หมื่น</a>
+		<a rel="00000" class="btn-text">แสน</a>
+	</div>
+	<div class="section-bottom">
+		<a class="btn-submit"><span>ตกลง</span></a>
+	</div>
+</div>
+<script>
+	$('.popup-insurance-cal .section-cal a').unbind('click');
+	$('.popup-insurance-cal .section-cal a').bind('click', function(e){
+		e.preventDefault();
+		
+		// data
+		var numberTarget = $(this).attr('rel');
+		var number = $('.popup-insurance-cal .show-number').text();
+		if(number == 0){number = '';}
+		var calNumber = number + numberTarget;
+
+		if($(this).attr('ref') == 'clear'){
+			calNumber = 0;
+		}else if($(this).attr('ref') == 'delete'){
+			calNumber = calNumber.slice(0, -1);
+			if(calNumber == ''){calNumber = 0;}
+		}
+		$('.popup-insurance-cal .show-number').number(calNumber, 0, ',');
+	});
+	
+	$('.popup-insurance-cal .btn-submit').unbind('click');
+	$('.popup-insurance-cal .btn-submit').bind('click', function(e){
+		e.preventDefault();
+		
+		var dataNumber = $('.popup-insurance-cal .show-number').text();
+		
+		$.fancybox.close();
+		
+		return false;
+	});
+</script>

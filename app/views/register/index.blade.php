@@ -78,15 +78,17 @@
             	<div class="container">
                     <div class="bgPaperShadow">
                     	<div class="contentPaperShadow">
+                         {{ Form::open(['route' => 'register.store','id'=>'postp', 'files'=>true]) }}
                             <div class="boxCardId">
-                            	<label>เลขที่บัตรประชาชน : </label>
+                            	<label>เลขที่บัตรประชาชน :  </label>
                                 <div class="boxInput">
-                                	<input id="tx_id" name="tx_id" type="text" value="" placeholder="0000000000000" />
-                                    <button class="btnCheckCardId" type="button"><span>ตรวจสอบเลขที่บัตรประชาชน</span></button>
+                                	<input id="username" name="username" type="text" value="" placeholder="0000000000000" />
+                                    <button class="btnCheckCardId" id="btnCheckCardId" type="button"><span>ตรวจสอบเลขที่บัตรประชาชน</span></button>
                                 </div>
-                                <div>*กรณี ระบุ หมายเลขบัตรประชาชน ให้ตรวจสอบ การ์ดเหลือง</div>
+                                <div>*กรณี ระบุ หมายเลขบัตรประชาชน ให้ตรวจสอบ การ์ดเหลือง </div>
                             </div>
-                            
+                        {{ Form::close() }} 
+
                             <div class="boxListForm">
                             	<div class="col-md-4">
                                 	<div class="col-sm-5 pdl0 txt-sm-right lh-form-control ws-nowrap">คำนำหน้า :</div>
@@ -275,13 +277,32 @@
 				$('.btnCheckCardId').click(function(e){
 					e.preventDefault();
 					
-					$.fancybox({
+                    $.ajax({
+                      type: "POST",
+                      cache: false,
+                      url: this.href,
+                      data: $("#postp").serializeArray(),
+                      success: function (data) {
+                        $.fancybox(data, {
+                          padding:0,
+                          margin:0, 
+                          fitToView: true,
+                          autoSize: true,
+                          closeClick: false,
+                          openEffect: 'none',
+                          closeEffect: 'none'
+                        }); // fancybox
+                      } // success
+                    }); // ajax
+
+					/*$.fancybox({
 						href:'ajax/popup-check-card-id.html',
 						type:'ajax',
 						padding:0,
 						margin:0, 
 						fitToView : false
-					});
+					});*/
+
 				});
 				$('.btnSaveLeadRegister').click(function(e){
 					e.preventDefault();
@@ -295,6 +316,7 @@
 					});
 				});
             });
+
         </script>
         <!-- end javascript this page -->
     </body>

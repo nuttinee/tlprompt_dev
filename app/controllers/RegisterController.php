@@ -15,8 +15,8 @@ class RegisterController extends BaseController {
 	|
 	*/
 
-	public function index()
-	{
+	public function index(){
+
 		if(Session::get('displayName')){
 
 			if(Session::get('displayName')){
@@ -31,6 +31,29 @@ class RegisterController extends BaseController {
 			return Redirect::to('login');	
 		}
 	
+	}
+
+	public function store(){
+	
+		# Authen User and Pass
+		$input = Input::all();
+		$username = Input::get('username');
+
+		#echo '<pre>'.print_r($username,true).'</pre>'; exit();
+		
+		$path   = "/CaOperation/rest/login";
+		$method = "checkRegister";
+		$body = "username=".$username;
+		
+		$object = getDataAPI($path, $method, $query="", $body);
+		
+		if(isset($object->dataExcept)){
+			//echo '<pre>'.print_r($username,true).'</pre>'; exit();
+			//return json_encode($object);
+			return View::make('ajax.popup-check-card-id', ['username' => $username, 'status' => '1']);
+		}else{
+			return View::make('ajax.popup-check-card-id', ['username' => $username, 'status' => '2']);
+		}
 	}
 
 }
