@@ -23,10 +23,10 @@
     </head>
     
     <body>
-    	<div id="login_page" class="mainContainer">
-        	<div class="container">
-            	<!-- start loginHeader -->
-            	<div class="loginHeader">
+        <div id="login_page" class="mainContainer">
+            <div class="container">
+                <!-- start loginHeader -->
+                <div class="loginHeader">
                     <h1 class="logoThailife"><a id="login_pic_logoTL" href="#">ไทยประกันชีวิต</a></h1>
                     <div class="boxVersion">
                         <div class="txt1">ทีแอล <span>พร้อม</span></div>
@@ -36,7 +36,6 @@
                     <div class="clearfix"></div>
                 </div>
                 <!-- end loginHeader -->
-
                 <div class="ct"><div class="cc">
                     <!-- start boxFormLogin -->
                     <div class="boxFormLogin">
@@ -45,25 +44,25 @@
                             {{ Form::open(['route' => 'login.store','id'=>'formLogin', 'files'=>true]) }}
                             
                             @if ($errors->has())
-                              <div class="alert alert-danger" style="margin:20px; color:red;"> @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger" style="margin:20px; color:red;"> @foreach ($errors->all() as $error)
                                 {{ $error }}
-                                @endforeach </div>
+                            @endforeach </div>
                             @endif
-                                <ul class="bg-style">
-                                    <li><input name="username" type="text" class="intxt-style" placeholder="รหัสตัวแทน หรือ รหัสบัตรประชาชน"></li>
-                                    <li><input name="password" type="password" class="intxt-style" placeholder="รหัสผ่านนักขายดิจิทัล"></li>
-                                </ul>
-                                
-                                <ul>
-                                    <li>
-                                        <div class="pull-left">
-                                            <input id="login_ck_rememberPass" name="login_ck_rememberPass" class="check-style" type="checkbox"> <label for="login_ck_rememberPass">จดจำรหัสผ่าน</label>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </li>
-                                    <li><button id="login_bt_login" class="btn-style mgt22" type="submit"><span>เข้าสู่ระบบ</span></button></li>
-                                </ul>
-                           {{ Form::close() }} 
+                            <ul class="bg-style">
+                                <li><input name="username" type="text" class="intxt-style" placeholder="รหัสตัวแทน หรือ รหัสบัตรประชาชน" value="{{Input::old('username')}}"></li>
+                                <li><input name="password" type="password" class="intxt-style" placeholder="รหัสผ่านนักขายดิจิทัล"></li>
+                            </ul>
+                            
+                            <ul>
+                                <li>
+                                    <div class="pull-left">
+                                        <input id="login_ck_rememberPass" name="login_ck_rememberPass" class="check-style" type="checkbox"> <label for="login_ck_rememberPass">จดจำรหัสผ่าน</label>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                                <li><button id="login_bt_login" class="btn-style mgt22" type="submit"><span>เข้าสู่ระบบ</span></button></li>
+                            </ul>
+                            {{ Form::close() }}
                         </div>
                     </div>
                     <!-- end boxFormLogin -->
@@ -71,7 +70,7 @@
                 
             </div>
         </div>
-		
+        
         <!-- start javascript inc -->
         <script type="text/javascript" src="assets/js/jquery-1.8.3.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.mousewheel.js"></script>

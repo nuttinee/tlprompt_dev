@@ -48,7 +48,7 @@ class LoginController extends BaseController {
 			return Redirect::to('register');
 
 		}else{
-			return Redirect::back()->withErrors('Username and password is not correct.');
+			return Redirect::back()->withErrors('Username and password is not correct.')->withInput();
 		}
 	}
 

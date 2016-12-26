@@ -46,9 +46,9 @@ class RegisterController extends BaseController {
 		$body = "username=".$username;
 		
 		$object = getDataAPI($path, $method, $query="", $body);
+		//echo '<pre>'.print_r($username,true).'</pre>'; exit();
 		
 		if(isset($object->dataExcept)){
-			//echo '<pre>'.print_r($username,true).'</pre>'; exit();
 			//return json_encode($object);
 			return View::make('ajax.popup-check-card-id', ['username' => $username, 'status' => '1']);
 		}else{
